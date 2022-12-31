@@ -56,12 +56,3 @@ def home():
 @ app.route("/test")
 def test():
     return "testing!"
-
-
-if __name__ == "__main__":
-    # try:
-    #     os.system("mkdir Calendize")
-    # except:
-    #     pass
-    # os.system("cd Calendize; open ElectronReact.app")
-    app.run(debug=True)
