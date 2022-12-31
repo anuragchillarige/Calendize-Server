@@ -1,7 +1,6 @@
 from rss_parser import Parser
 import Summarize
 from requests import get
-import requests
 
 # import requests
 # from bs4 import BeautifulSoup
