@@ -4,6 +4,6 @@ firebase-admin
 flask
 spacy
 rss-parser
-typing-extensions
+typing-extensions==4.1.9
 Gunicorn
 
