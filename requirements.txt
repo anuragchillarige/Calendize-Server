@@ -3,7 +3,6 @@ recurring_ical_events
 firebase_admin
 flask
 spacy
-heapq
 rss_parser
 Gunicorn
 
