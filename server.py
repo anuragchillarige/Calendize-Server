@@ -1,12 +1,8 @@
-from typing import final
-from werkzeug.utils import secure_filename
 import os
-from copyreg import constructor
-from flask import Flask, request, render_template, url_for, abort, jsonify
+from flask import Flask, request, render_template, jsonify
 import Utilities
 import json
-import iCal
-import requests
+import FirebaseUtilities
 
 # Edit this One AI API call using our studio at https://studio.oneai.com/?pipeline=1IhlEE&share=true
 
@@ -35,14 +31,14 @@ def getLink():
 @app.route('/addCalendar', methods=["POST"])
 def addCalendar():
     output = json.loads(request.data)
-    out = iCal.addCalendars(output['user'])
+    out = FirebaseUtilities.addCalendars(output['user'])
     return out
 
 
 @app.route('/readRssLinks', methods=["POST", "GET"])
 def readRssLinks():
     output = json.loads(request.data)
-    links = iCal.readRssLinks(output['user'])
+    links = FirebaseUtilities.readRssLinks(output['user'])
     data = []
     for i in links:
         data.append(Utilities.get_rss_news_data(i))
@@ -60,21 +56,6 @@ def home():
 @ app.route("/test")
 def test():
     return "testing!"
-
-
-@ app.route("/ics", methods=['POST', 'GET'])
-def ics():
-
-    if 'file' not in request.files:
-        return ('err', 404)
-    file = request.files['file']
-    if file.filename == '':
-        return ('', 204)
-    if file and file.filename.rsplit('.', 1)[1].lower() == 'ics':
-        filename = secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOADFOLDER'], filename))
-        addedFile = True
-        return ('', 204)
 
 
 if __name__ == "__main__":
