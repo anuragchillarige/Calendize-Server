@@ -1,8 +1,8 @@
 icalendar
-recurring_ical_events
-firebase_admin
+recurring-ical-events
+firebase-admin
 flask
 spacy
-rss_parser
+rss-parser
 Gunicorn
 
