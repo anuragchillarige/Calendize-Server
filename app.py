@@ -17,7 +17,6 @@ link = []
 @app.route("/rssFeed")
 def rssFeed(link="http://rss.cnn.com/rss/cnn_world.rss"):
     feed = json.dumps(Utilities.get_rss_news_data(link), indent=4)
-    print(feed)
     return feed
 
 
@@ -44,7 +43,6 @@ def readRssLinks():
         data.append(Utilities.get_rss_news_data(i))
     response = jsonify(data)
     response.headers.add('Access-Control-Allow-Origin', '*')
-    print(response)
     return response
 
 

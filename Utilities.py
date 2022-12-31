@@ -11,7 +11,6 @@ def get_summary(summary):
 
 
 def get_rss_news_data(link):
-    print(link)
     titles = []
     try:
         xml = get(link)
@@ -39,11 +38,9 @@ def get_rss_news_data(link):
                 str_1title += ' ' + j
                 if num_count == 19 and len(title_tokens) > 20:
                     str_1title += '...'
-                    print("sdfs")
                     break
                 num_count += 1
 
-            print(str_1title)
             date = i.publish_date.replace("\"", "")
             date = date.replace("\'", "")
             str_date = date.encode("ascii", "ignore")
@@ -53,7 +50,6 @@ def get_rss_news_data(link):
             if len(date_tokens) >= 4:
                 for i in range(4):
                     str_1date += ' ' + date_tokens[i]
-            print(link, str_1date, len(feed.feed))
             # if "description" in i and "published" in i and "title" in i:
             titles.append(
                 [str_1title, str_1date])

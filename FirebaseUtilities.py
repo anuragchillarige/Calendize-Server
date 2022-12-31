@@ -32,7 +32,6 @@ def add_to_db(events, docID):
     try:
         for event in events:
             name = str(event['SUMMARY'])
-            print(event)
             try:
                 description = str(event['DESCRIPTION'])
                 if (description.__contains__('To see detailed information for automatically created events like this one, use the official Google Calendar app.')):
@@ -60,7 +59,7 @@ def add_to_db(events, docID):
                 f'iCal {name} ON {start} AT {start_time}').set(data)
         return True
     except Exception as e:
-        print(e + ' dsifjsdkl')
+        print(e)
         return False
 
 
@@ -87,7 +86,7 @@ def addCalendars(docID):
         for link in links:
             added = read_ical(link, docID)
             if (added == False):
-                print("err")
+                print("ERROR: COULD NOT ADD LINK")
 
     return ""
 

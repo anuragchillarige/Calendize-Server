@@ -44,5 +44,4 @@ def summarize(text, per):
     for i in final_summary:
         summary += i.strip() + " "
     summary = summary.strip()
-    print(summary)
     return summary
