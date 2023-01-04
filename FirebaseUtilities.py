@@ -83,8 +83,9 @@ def addCalendars(docID):
 
     if (doc.exists):
         links = doc.to_dict()['iCalLinks']
+        # print(links)
         for link in links:
-            added = read_ical(link, docID)
+            added = read_ical(links[link], docID)
             if (added == False):
                 print("ERROR: COULD NOT ADD LINK")
 
@@ -94,7 +95,7 @@ def readRssLinks(docID):
     docRef = db.collection("users").document(docID)
     doc = docRef.get()
 
-    links = []
+    links = {}
     if(doc.exists):
         links = doc.to_dict()['rssLinks']
     return links

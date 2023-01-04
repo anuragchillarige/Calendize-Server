@@ -8,24 +8,7 @@ import FirebaseUtilities
 
 
 app = Flask(__name__)
-UPLOADFOLDER = os.path.join(os.getcwd(), './icsFiles')
-app.config['UPLOADFOLDER'] = UPLOADFOLDER
-addedFile = False
-link = []
-
-
-@app.route("/rssFeed")
-def rssFeed(link="http://rss.cnn.com/rss/cnn_world.rss"):
-    feed = json.dumps(Utilities.get_rss_news_data(link), indent=4)
-    return feed
-
-
-@app.route('/getLink', methods=["POST"])
-def getLink():
-    output = json.loads(request.data)
-    link.append(output["link"])
-    return output
-
+link = {}
 
 @app.route('/addCalendar', methods=["POST"])
 def addCalendar():
@@ -40,7 +23,7 @@ def readRssLinks():
     links = FirebaseUtilities.readRssLinks(output['user'])
     data = []
     for i in links:
-        data.append(Utilities.get_rss_news_data(i))
+        data.append(Utilities.get_rss_news_data(links[i]))
     response = jsonify(data)
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
@@ -54,3 +37,8 @@ def home():
 @ app.route("/test")
 def test():
     return "testing!"
+
+
+
+if __name__ == '__main__':
+    app.run()

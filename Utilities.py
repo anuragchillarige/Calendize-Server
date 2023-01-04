@@ -1,13 +1,13 @@
 from rss_parser import Parser
-import Summarize
+#import Summarize
 from requests import get
 
 # import requests
 # from bs4 import BeautifulSoup
 
 
-def get_summary(summary):
-    return Summarize.summarize(summary, 0.3)
+#def get_summary(summary):
+   # return Summarize.summarize(summary, 0.3)
 
 
 def get_rss_news_data(link):
